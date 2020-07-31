@@ -1,0 +1,35 @@
+diff --git a/node_modules/pastel/index.js b/node_modules/pastel/index.js
+index 249dd6e..cd85ff3 100644
+--- a/node_modules/pastel/index.js
++++ b/node_modules/pastel/index.js
+@@ -19,7 +19,7 @@ class Pastel extends EventEmitter {
+ 		super();
+ 
+ 		this.appPath = appPath;
+-		this.commandsPath = path.join(appPath, 'commands');
++		this.commandsPath = path.join(appPath, 'src/commands');
+ 		this.buildPath = path.join(appPath, 'build');
+ 		this.cachePath = path.join(appPath, 'node_modules', '.cache', 'parcel');
+ 
+diff --git a/node_modules/pastel/lib/lint.js b/node_modules/pastel/lib/lint.js
+index b9aec16..22f6e9b 100644
+--- a/node_modules/pastel/lib/lint.js
++++ b/node_modules/pastel/lib/lint.js
+@@ -44,7 +44,7 @@ module.exports = (projectPath, pkg) => {
+ 		`);
+ 	}
+ 
+-	if (!fs.existsSync(path.join(projectPath, 'commands'))) {
++	if (!fs.existsSync(path.join(projectPath, 'src/commands'))) {
+ 		fail('Directory "commands" is missing', `
+ 			Pastel requires "commands" directory to exist in the root of your application, because that's where it looks for your commands.
+ 
+@@ -54,7 +54,7 @@ module.exports = (projectPath, pkg) => {
+ 		`);
+ 	}
+ 
+-	const commands = fs.readdirSync(path.join(projectPath, 'commands'));
++	const commands = fs.readdirSync(path.join(projectPath, 'src/commands'));
+ 	if (commands.length === 0) {
+ 		fail('Commands were not found', `
+ 			Pastel requires at least one command to exist in "commands" directory. Create an "index.js" file in "commands" directory and paste this example code:
